@@ -102,6 +102,7 @@ export default function createScrollingComponent(WrappedComponent) {
       window.document.body.removeEventListener('touchmove', this.handleEvent);
       this.clearMonitorSubscription();
       this.stopScrolling();
+      this.detach();
     }
 
     handleEvent = (evt) => {
@@ -119,6 +120,7 @@ export default function createScrollingComponent(WrappedComponent) {
       } else if (this.dragging && !isDragging) {
         this.dragging = false;
         this.stopScrolling();
+        this.detach();
       }
     }
 
@@ -202,7 +204,6 @@ export default function createScrollingComponent(WrappedComponent) {
     }
 
     stopScrolling() {
-      this.detach();
       this.scaleX = 0;
       this.scaleY = 0;
 
